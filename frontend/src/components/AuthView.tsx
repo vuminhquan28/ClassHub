@@ -73,7 +73,7 @@ export const AuthView: React.FC<AuthViewProps> = ({
             if (onLoginSuccess) {
               onLoginSuccess(res.user);
             } else {
-              router.push('/');
+              router.push('/dashboard');
             }
           }, 1000);
         }
@@ -84,7 +84,7 @@ export const AuthView: React.FC<AuthViewProps> = ({
           if (onLoginSuccess) {
             onLoginSuccess(res.user);
           } else {
-            router.push('/');
+            router.push('/dashboard');
           }
         }
       }

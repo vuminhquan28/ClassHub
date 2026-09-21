@@ -5,3 +5,4 @@ export * from './CreateClassModal';
 export * from './Navbar';
 export * from './Sidebar';
 export * from './StatCard';
+export * from './ClassHubDashboard';

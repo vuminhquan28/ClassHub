@@ -8,7 +8,7 @@ export default function LoginPage() {
   const router = useRouter();
 
   const handleLoginSuccess = (userData: any) => {
-    router.push('/');
+    router.push('/dashboard');
   };
 
   return (

@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={`${plusJakartaSans.className} antialiased bg-[#0b0f19] text-gray-100 min-h-screen`}>
+      <body className={`${plusJakartaSans.className} antialiased bg-[#edf6f4] text-slate-800 min-h-screen`}>
         {children}
       </body>
     </html>

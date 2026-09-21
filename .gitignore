@@ -38,6 +38,9 @@ Desktop.ini
 # IDE / Editor config
 .vscode/
 .idea/
+.agents/
+.claude/
+.windsurf/
 *.swp
 *.swo
 
