@@ -59,3 +59,14 @@ export const assignmentAPI = {
   submit: (submissionData: any) => 
     apiCall('/assignments/submit', { method: 'POST', body: JSON.stringify(submissionData) })
 };
+
+export const dashboardAPI = {
+  getSummary: () =>
+    apiCall<{
+      success: boolean;
+      user: { id: string; name: string; email: string; phone?: string; role: string };
+      totalCredits: number;
+      schedules: { student: any[]; teacher: any[] };
+      announcements: any[];
+    }>('/dashboard/summary')
+};

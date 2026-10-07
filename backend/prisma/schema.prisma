@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../src/generated/prisma"
 }
 
@@ -10,15 +10,67 @@ datasource db {
 enum Role {
   STUDENT
   TEACHER
+  ADMIN
 }
 
 model User {
+  id                 Int                 @id @default(autoincrement())
+  role               Role
+  fullName           String
+  email              String              @unique
+  phone              String              @unique
+  password           String
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  teacherCourses     TeacherCourse[]
+  studentEnrollments StudentEnrollment[]
+}
+
+model Course {
+  id                 Int                  @id @default(autoincrement())
+  code               String               @unique
+  name               String
+  credits            Int                  @default(3)
+  dayOfWeek          Int                  @default(2)
+  dayName            String               @default("Thứ Hai")
+  timeSlot           String               @default("07:30 - 09:30")
+  room               String               @default("Phòng 201")
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  prerequisites      CoursePrerequisite[] @relation("CoursePrerequisites")
+  prerequisiteFor    CoursePrerequisite[] @relation("IsPrerequisiteFor")
+  teacherCourses     TeacherCourse[]
+  studentEnrollments StudentEnrollment[]
+}
+
+model CoursePrerequisite {
+  id             Int    @id @default(autoincrement())
+  courseId       Int
+  prerequisiteId Int
+  course         Course @relation("CoursePrerequisites", fields: [courseId], references: [id], onDelete: Cascade)
+  prerequisite   Course @relation("IsPrerequisiteFor", fields: [prerequisiteId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, prerequisiteId])
+}
+
+model TeacherCourse {
   id        Int      @id @default(autoincrement())
-  role      Role
-  fullName  String
-  email     String   @unique
-  phone     String   @unique
-  password  String
+  teacherId Int
+  courseId  Int
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  teacher   User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([teacherId, courseId])
+}
+
+model StudentEnrollment {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  courseId  Int
+  createdAt DateTime @default(now())
+  student   User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, courseId])
 }

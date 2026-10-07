@@ -51,7 +51,7 @@ export const AuthView: React.FC<AuthViewProps> = ({
     setSuccessMsg('');
 
     if (isRegisterMode) {
-      if (!name || !email || !password) {
+      if (!name || !email || !password || !phone) {
         return setErrorMsg('Vui lòng điền đầy đủ các thông tin bắt buộc (*)');
       }
       if (password !== confirmPassword) {
@@ -65,9 +65,10 @@ export const AuthView: React.FC<AuthViewProps> = ({
 
     try {
       if (isRegisterMode) {
-        const res = await authAPI.register({ name, email, password, role });
+        const res = await authAPI.register({ name, fullName: name, email, phone, password, role });
         if (res.user) {
           localStorage.setItem('classhub_token', res.token);
+          localStorage.setItem('classhub_user', JSON.stringify(res.user));
           setSuccessMsg('Đăng ký tài khoản thành công! Đang chuyển hướng...');
           setTimeout(() => {
             if (onLoginSuccess) {
@@ -81,6 +82,7 @@ export const AuthView: React.FC<AuthViewProps> = ({
         const res = await authAPI.login({ email, password });
         if (res.user) {
           localStorage.setItem('classhub_token', res.token);
+          localStorage.setItem('classhub_user', JSON.stringify(res.user));
           if (onLoginSuccess) {
             onLoginSuccess(res.user);
           } else {

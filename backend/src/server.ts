@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes.js';
 import classRoutes from './routes/class.routes.js';
 import assignmentRoutes from './routes/assignment.routes.js';
+import dashboardRoutes from './routes/dashboard.routes.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
 dotenv.config();
@@ -29,6 +30,7 @@ app.get('/api/health', (req: Request, res: Response) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/classes', classRoutes);
 app.use('/api/assignments', assignmentRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Error Handling Middleware
 app.use(errorHandler as any);
