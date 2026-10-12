@@ -82,16 +82,13 @@ Route (app)
 Mở **2 terminal song song**:
 
 **Terminal 1 — Backend (port 5000)**
-```bash
-cd backend
+cd "d:\1. project\ClassHub\backend"
 npm run dev
-```
+
 
 **Terminal 2 — Frontend (port 3000)**
-```bash
-cd frontend
+cd "d:\1. project\ClassHub\frontend"
 npm run dev
-```
 
 - Trang chủ `/` tự chuyển tới dashboard.
 - Dashboard: [http://localhost:3000/dashboard](http://localhost:3000/dashboard)

@@ -12,10 +12,10 @@ export const authenticateToken = (req: AuthenticatedRequest, res: Response, next
 
   if (!token) {
     req.user = {
-      id: "usr_1",
-      name: "Cô Nguyễn Thu Hà",
-      email: "teacher@classhub.edu.vn",
-      role: "TEACHER"
+      id: "211",
+      name: "Vũ Minh Quân",
+      email: "qvu11205@gmail.com",
+      role: "ADMIN"
     };
     return next();
   }

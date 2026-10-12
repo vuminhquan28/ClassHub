@@ -37,7 +37,14 @@ export const authAPI = {
   register: (userData: any) => 
     apiCall('/auth/register', { method: 'POST', body: JSON.stringify(userData) }),
   getMe: () => 
-    apiCall('/auth/me')
+    apiCall<{ success: boolean; user: import('@/types').User }>('/auth/me'),
+  getProfile: () => 
+    apiCall<{ success: boolean; user: import('@/types').User }>('/auth/profile'),
+  updateProfile: (profileData: Partial<import('@/types').User>) => 
+    apiCall<{ success: boolean; message: string; user: import('@/types').User }>('/auth/profile', {
+      method: 'PUT',
+      body: JSON.stringify(profileData)
+    })
 };
 
 export const classAPI = {

@@ -1,11 +1,35 @@
 export type UserRole = 'ADMIN' | 'TEACHER' | 'STUDENT';
 
+export interface CourseSummary {
+  id: number;
+  code: string;
+  name: string;
+  credits: number;
+  dayName: string;
+  timeSlot: string;
+  room: string;
+}
+
 export interface User {
   id: string;
   name: string;
+  fullName?: string;
   email: string;
+  phone?: string;
   role: UserRole;
   avatar?: string;
+  avatarUrl?: string | null;
+  studentCode?: string | null;
+  lecturerCode?: string | null;
+  gender?: string | null;
+  dateOfBirth?: string | null;
+  address?: string | null;
+  faculty?: string | null;
+  className?: string | null;
+  academicTitle?: string | null;
+  courses?: CourseSummary[];
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface ClassItem {

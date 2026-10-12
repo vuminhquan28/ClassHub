@@ -364,6 +364,14 @@ export function ClassHubDashboard() {
               <HelpCircle className="w-5 h-5" />
               <span>Trợ giúp</span>
             </button>
+
+            <button
+              onClick={() => router.push('/profile')}
+              className="w-full flex items-center gap-3.5 px-4 py-3 rounded-xl font-medium text-sm text-emerald-100/80 hover:bg-white/10 hover:text-white transition-all duration-200"
+            >
+              <UserIcon className="w-5 h-5" />
+              <span>Hồ sơ cá nhân</span>
+            </button>
           </nav>
         </div>
 
@@ -515,6 +523,23 @@ export function ClassHubDashboard() {
                         </span>
                       </div>
                     </div>
+                  </div>
+
+                  {/* Profile Action Link */}
+                  <div className="p-2 border-b border-slate-100">
+                    <button
+                      onClick={() => {
+                        setIsRoleDropdownOpen(false);
+                        router.push('/profile');
+                      }}
+                      className="w-full text-left px-3 py-2.5 rounded-xl bg-teal-50/70 hover:bg-[#009e82] text-teal-900 hover:text-white flex items-center justify-between group transition-all"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <UserIcon className="w-4 h-4 text-[#009e82] group-hover:text-white transition-colors" />
+                        <span className="text-xs font-bold">Hồ sơ cá nhân</span>
+                      </div>
+                      <ArrowRight className="w-3.5 h-3.5 text-teal-600 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                    </button>
                   </div>
 
                   {/* Role Switcher Section */}
